@@ -1,0 +1,22 @@
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Local database and private data
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploaded files and generated reports
+uploads/
+gradcam_outputs/
+reports/
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db

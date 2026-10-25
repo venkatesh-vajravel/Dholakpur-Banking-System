@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dholakpur Banking</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🏦 DHOLAKPUR BANKING
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#" onclick="showHome()">
+                Home
+            </a>
+
+            <a href="#" onclick="showAbout()">
+                About
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- HOME PAGE -->
+
+    <main id="homePage">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="welcome-text">WELCOME TO</p>
+
+                <h1>
+                    Dholakpur<br>
+                    Banking
+                </h1>
+
+                <p class="description">
+                    A simple and secure banking
+                    management system built with
+                    Python and FastAPI.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="primary-btn"
+                        onclick="showCreateAccount()"
+                    >
+                        Create Account
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="showLogin()"
+                    >
+                        Login
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="hero-card">
+
+                <div class="card-top">
+                    <span>Dholakpur Bank</span>
+                    <span>💳</span>
+                </div>
+
+                <div class="card-number">
+                    **** **** **** 2026
+                </div>
+
+                <div class="card-bottom">
+                    <span>DHOLAKPUR</span>
+                    <span>🏦</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOME FEATURES -->
+
+        <section class="features">
+
+            <div
+                class="feature-card"
+                onclick="showLogin()"
+            >
+                <div class="feature-icon">💰</div>
+                <h3>Check Balance</h3>
+                <p>View your current account balance.</p>
+            </div>
+
+            <div
+                class="feature-card"
+                onclick="showLogin()"
+            >
+                <div class="feature-icon">💵</div>
+                <h3>Deposit Money</h3>
+                <p>Add money to your account easily.</p>
+            </div>
+
+            <div
+                class="feature-card"
+                onclick="showLogin()"
+            >
+                <div class="feature-icon">💸</div>
+                <h3>Withdraw Money</h3>
+                <p>Withdraw money from your account.</p>
+            </div>
+
+            <div
+                class="feature-card"
+                onclick="showLogin()"
+            >
+                <div class="feature-icon">🔐</div>
+                <h3>Secure PIN</h3>
+                <p>Manage your four-digit banking PIN.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- CREATE ACCOUNT PAGE -->
+
+    <section
+        id="createAccountPage"
+        class="form-page hidden"
+    >
+
+        <div class="form-card">
+
+            <button
+                class="back-btn"
+                onclick="showHome()"
+            >
+                ← Back
+            </button>
+
+            <h2>Create New Account</h2>
+
+            <p>Join Dholakpur Banking today.</p>
+
+            <form id="createAccountForm">
+
+                <label>Account Number</label>
+
+                <input
+                    type="text"
+                    id="createAccountNumber"
+                    required
+                    placeholder="Enter account number"
+                >
+
+                <label>Your Name</label>
+
+                <input
+                    type="text"
+                    id="createName"
+                    required
+                    placeholder="Enter your name"
+                >
+
+                <label>4-Digit PIN</label>
+
+                <input
+                    type="password"
+                    id="createPin"
+                    maxlength="4"
+                    inputmode="numeric"
+                    pattern="[0-9]{4}"
+                    required
+                    placeholder="Enter 4-digit PIN"
+                >
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+            <div id="createMessage" class="message"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOGIN PAGE -->
+
+    <section
+        id="loginPage"
+        class="form-page hidden"
+    >
+
+        <div class="form-card">
+
+            <button
+                class="back-btn"
+                onclick="showHome()"
+            >
+                ← Back
+            </button>
+
+            <h2>Login</h2>
+
+            <p>Access your Dholakpur account.</p>
+
+            <form id="loginForm">
+
+                <label>Account Number</label>
+
+                <input
+                    type="text"
+                    id="loginAccountNumber"
+                    required
+                    placeholder="Enter account number"
+                >
+
+                <label>PIN</label>
+
+                <input
+                    type="password"
+                    id="loginPin"
+                    maxlength="4"
+                    inputmode="numeric"
+                    pattern="[0-9]{4}"
+                    required
+                    placeholder="Enter 4-digit PIN"
+                >
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+            <div id="loginMessage" class="message"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <section
+        id="dashboardPage"
+        class="dashboard hidden"
+    >
+
+        <div class="dashboard-header">
+
+            <div>
+                <p class="welcome-text">WELCOME BACK</p>
+                <h2 id="dashboardName">User</h2>
+            </div>
+
+            <button
+                class="logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+        <!-- BALANCE -->
+
+        <div class="balance-card">
+
+            <p>Available Balance</p>
+
+            <h1>
+                ₹<span id="balanceAmount">0.00</span>
+            </h1>
+
+            <p>
+                Account:
+                <span id="dashboardAccount">-</span>
+            </p>
+
+        </div>
+
+
+        <!-- DASHBOARD ACTIONS -->
+
+        <div class="dashboard-grid">
+
+            <div
+                class="dashboard-card"
+                onclick="showBalance()"
+            >
+                <div class="feature-icon">💰</div>
+                <h3>Check Balance</h3>
+                <p>View your current balance.</p>
+            </div>
+
+            <div
+                class="dashboard-card"
+                onclick="showDeposit()"
+            >
+                <div class="feature-icon">💵</div>
+                <h3>Deposit</h3>
+                <p>Add money to your account.</p>
+            </div>
+
+            <div
+                class="dashboard-card"
+                onclick="showWithdraw()"
+            >
+                <div class="feature-icon">💸</div>
+                <h3>Withdraw</h3>
+                <p>Withdraw money.</p>
+            </div>
+
+            <div
+                class="dashboard-card"
+                onclick="showDetails()"
+            >
+                <div class="feature-icon">👤</div>
+                <h3>Account Details</h3>
+                <p>View your account information.</p>
+            </div>
+
+            <div
+                class="dashboard-card"
+                onclick="showChangePin()"
+            >
+                <div class="feature-icon">🔐</div>
+                <h3>Change PIN</h3>
+                <p>Change your banking PIN.</p>
+            </div>
+
+        </div>
+
+
+        <!-- DASHBOARD MESSAGE -->
+
+        <div id="dashboardMessage" class="message"></div>
+
+
+        <!-- DEPOSIT FORM -->
+
+        <div
+            id="depositBox"
+            class="dashboard-form hidden"
+        >
+
+            <h3>Deposit Money</h3>
+
+            <form id="depositForm">
+
+                <input
+                    type="number"
+                    id="depositAmount"
+                    min="1"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    required
+                >
+
+                <button type="submit" class="primary-btn">
+                    Deposit
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- WITHDRAW FORM -->
+
+        <div
+            id="withdrawBox"
+            class="dashboard-form hidden"
+        >
+
+            <h3>Withdraw Money</h3>
+
+            <form id="withdrawForm">
+
+                <input
+                    type="number"
+                    id="withdrawAmount"
+                    min="1"
+                    step="0.01"
+                    placeholder="Enter amount"
+                    required
+                >
+
+                <button type="submit" class="primary-btn">
+                    Withdraw
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- CHANGE PIN FORM -->
+
+        <div
+            id="changePinBox"
+            class="dashboard-form hidden"
+        >
+
+            <h3>Change PIN</h3>
+
+            <!-- STEP 1: VERIFY ACCOUNT -->
+
+            <form id="verifyPinAccountForm">
+
+                <label>Account Number</label>
+
+                <input
+                    type="text"
+                    id="changePinAccountNumber"
+                    placeholder="Enter account number"
+                    required
+                >
+
+                <label>Account Holder Name</label>
+
+                <input
+                    type="text"
+                    id="changePinName"
+                    placeholder="Enter account holder name"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Verify Account
+                </button>
+
+            </form>
+
+            <div
+                id="verifyPinMessage"
+                class="message"
+            ></div>
+
+
+            <!-- STEP 2: ENTER NEW PIN -->
+
+            <div id="newPinSection" class="hidden">
+
+                <p>
+                    Account verified. Enter your new PIN.
+                </p>
+
+                <form id="changePinForm">
+
+                    <label>New 4-Digit PIN</label>
+
+                    <input
+                        type="password"
+                        id="newPin"
+                        maxlength="4"
+                        inputmode="numeric"
+                        pattern="[0-9]{4}"
+                        placeholder="Enter new 4-digit PIN"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Change PIN
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        <p>© 2026 Dholakpur Banking System</p>
+    </footer>
+
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
